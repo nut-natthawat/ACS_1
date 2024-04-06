@@ -8,7 +8,7 @@ struct userData {
     float Ne, Ni, Te, Ti, Se, Si, Fe, Fi;
     string type;
 };
-//testtest123
+
 void knn(userData* fri, userData me) {
     int size = 50, min_index[3];
     float lowdistance[3] = {9999, 9999, 9999};
