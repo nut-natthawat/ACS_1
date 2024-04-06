@@ -1,94 +1,86 @@
 #include <iostream>
 #include <cmath>
+#include <map>
 using namespace std;
-struct USER_DATA
-{
-    string name,type;
-    float Ne,Ni,Te,Ti,Se,Si,Fe,Fi;
+
+struct userData {
+    string name;
+    float Ne, Ni, Te, Ti, Se, Si, Fe, Fi;
+    string type;
 };
-void knn(DATA fri,DATA me){
-    int size = 50,min_index[3];
-    float lowdistance[3] = {9999,9999,9999};
+
+void knn(userData* fri, userData me) {
+    int size = 50, min_index[3];
+    float lowdistance[3] = {9999, 9999, 9999};
     float distance[size];
-    for(int i=0;i<=size;i++){
-        distance[i] = sqrt(pow(fri.Ne[i]-me.Ne[i],2)+pow(fri.Ni[i]-me.Ni[i],2)+pow(fri.Te[i]-me.Te[i],2)+pow(fri.Ti[i]-me.Ti[i],2)+pow(fri.Se[i]-me.Se[i],2)+pow(fri.Si[i]-me.Si[i],2)+pow(fri.Fe[i]-me.Fe[i],2)+pow(fri.Fi[i]-me.Fi[i],2));
-        if(distance[i] < lowdistance[0]||distance[i] < lowdistance[1]||distance[i] < lowdistance[2]){
-            if(distance[i] <= lowdistance[0]){
+    for (int i = 0; i < size; i++) {
+        distance[i] = sqrt(pow(fri[i].Ne - me.Ne, 2) + pow(fri[i].Ni - me.Ni, 2) + pow(fri[i].Te - me.Te, 2) + pow(fri[i].Ti - me.Ti, 2) + pow(fri[i].Se - me.Se, 2) + pow(fri[i].Si - me.Si, 2) + pow(fri[i].Fe - me.Fe, 2) + pow(fri[i].Fi - me.Fi, 2));
+        if (distance[i] < lowdistance[0] || distance[i] < lowdistance[1] || distance[i] < lowdistance[2]) {
+            if (distance[i] <= lowdistance[0]) {
                 lowdistance[2] = lowdistance[1];
                 lowdistance[1] = lowdistance[0];
                 lowdistance[0] = distance[i];
                 min_index[0] = i;
-            }
-            else if(distance[i] <= lowdistance[1]){
+            } else if (distance[i] <= lowdistance[1]) {
                 lowdistance[2] = lowdistance[1];
                 lowdistance[1] = distance[i];
                 min_index[1] = i;
-            }
-            else{
+            } else {
                 lowdistance[2] = distance[i];
                 min_index[2] = i;
             }
         }
-
-    }   
-    int I = 0,E = 0,S = 0,N = 0,T = 0,F = 0,J = 0,P = 0;
-    for(int i=0;i<=3;i++){
-        if(fri[min_index[i]].type[0] == "I"){
+    }
+    int I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
+    for (int i = 0; i < 3; i++) {
+        if (fri[min_index[i]].type[0] == 'I') {
             I++;
-        }
-        else{
+        } else {
             E++;
         }
-        if(fri[min_index[i]].type[1] == "N"){
+        if (fri[min_index[i]].type[1] == 'N') {
             N++;
-        }
-        else{
+        } else {
             S++;
         }
-        if(fri[min_index[i]].type[2] == "T"){
+        if (fri[min_index[i]].type[2] == 'T') {
             T++;
-        }
-        else{
+        } else {
             F++;
         }
-        if(fri[min_index[i]].type[3] == "J"){
+        if (fri[min_index[i]].type[3] == 'J') {
             J++;
-        }
-        else{
+        } else {
             P++;
         }
-        i++;
     }
     cout << "Your MBTI type : ";
-    if(I > E){
+    if (I > E) {
         cout << "I";
-    }
-    else{
+    } else {
         cout << "E";
     }
-    if (N > S){
+    if (N > S) {
         cout << "N";
-    }
-    else{
+    } else {
         cout << "S";
     }
-    if (T > F){
+    if (T > F) {
         cout << "T";
-    }
-    else{
+    } else {
         cout << "F";
     }
-    if (P > J){
+    if (P > J) {
         cout << "P";
-    }
-    else{
+    } else {
         cout << "J";
     }
 }
-int main(){
+
+int main() {
     int size = 50;
-    USER_DATA Data_friend[size];
-    USER_DATA Data_me;
+    userData Data_friend[size];
+    userData Data_me;
 
     Data_friend[0] = {"Warin Wattanapornprom", 32, 32, 27, 36, 29, 31, 28, 23, "INTP"};
     Data_friend[1] = {"Kornkanok Welagert", 28.4, 29.4, 29, 34, 27, 24, 23, 21, "ISTP"};
@@ -140,7 +132,9 @@ int main(){
     Data_friend[47] = {"Nakamon Yongpaisarn", 28, 24, 31, 31, 29, 37, 28, 28, "INFP"};
     Data_friend[48] = {"Natthapon Tanateeraanan", 24.6, 22, 32, 32, 36, 38, 35, 27, "ESTP"};
     Data_friend[49] = {"Naphatchanun Suecey",23.4, 26, 31, 33, 24, 27, 31, 21, "ESFJ"};
-    Data_me[0] = {"Narutchai Mauensaen", 33.2, 27, 32, 28, 33, 32, 39, 40, ""};
-    Data_me = {"Narutchai Mauensaen", 33.2, 27, 32, 28, 33, 32, 39, 40, ""};
-    knn(Data_friend,Data_me);
+    //Data_me[0] = {"Narutchai Mauensaen", 33.2, 27, 32, 28, 33, 32, 39, 40, ""};
+    Data_me = {"Narutchai Mauensaen", 33.2, 27, 32, 28, 33, 32, 39, 40, ""}; // ข้อมูลของคุณ
+
+    knn(Data_friend, Data_me);
+    return 0;
 }
