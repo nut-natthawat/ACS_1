@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <map>
 using namespace std;
 
 struct userData {
@@ -10,7 +9,7 @@ struct userData {
 };
 
 void knn(userData* fri, userData me) {
-    int size = 50, min_index[3];
+    int size = 50, min_index[3],I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
     float lowdistance[3] = {9999, 9999, 9999};
     float distance[size];
     for (int i = 0; i < size; i++) {
@@ -31,29 +30,69 @@ void knn(userData* fri, userData me) {
             }
         }
     }
-    int I = 0, E = 0, S = 0, N = 0, T = 0, F = 0, J = 0, P = 0;
-    for (int i = 0; i < 3; i++) {
-        if (fri[min_index[i]].type[0] == 'I') {
-            I++;
-        } else {
-            E++;
-        }
-        if (fri[min_index[i]].type[1] == 'N') {
-            N++;
-        } else {
-            S++;
-        }
-        if (fri[min_index[i]].type[2] == 'T') {
-            T++;
-        } else {
-            F++;
-        }
-        if (fri[min_index[i]].type[3] == 'J') {
-            J++;
-        } else {
-            P++;
-        }
+    if (fri[min_index[0]].type[0] == 'I') {
+        I++;
+    } else {
+        E++;
     }
+    if (fri[min_index[0]].type[1] == 'N') {
+        N++;
+    } else {
+        S++;
+    }
+    if (fri[min_index[0]].type[2] == 'T') {
+        T++;
+    } else {
+        F++;
+    }
+    if (fri[min_index[0]].type[3] == 'J') {
+        J++;
+    } else {
+        P++;
+    }
+    /////////////////////////////////////////////////////////////////
+    if (fri[min_index[1]].type[0] == 'I') {
+        I++;
+    } else {
+        E++;
+    }
+    if (fri[min_index[1]].type[1] == 'N') {
+        N++;
+    } else {
+        S++;
+    }
+    if (fri[min_index[1]].type[2] == 'T') {
+        T++;
+    } else {
+        F++;
+    }
+    if (fri[min_index[1]].type[3] == 'J') {
+        J++;
+    } else {
+        P++;
+    }
+    ////////////////////////////////////////////////////////////////
+    if (fri[min_index[2]].type[0] == 'I') {
+        I++;
+    } else {
+        E++;
+    }
+    if (fri[min_index[2]].type[1] == 'N') {
+        N++;
+    } else {
+        S++;
+    }
+    if (fri[min_index[2]].type[2] == 'T') {
+        T++;
+    } else {
+        F++;
+    }
+    if (fri[min_index[2]].type[3] == 'J') {
+        J++;
+    } else {
+        P++;
+    }
+    ///////////////////////////////////////////////////////////////
     cout << "Your MBTI type : ";
     if (I > E) {
         cout << "I";
