@@ -114,8 +114,10 @@ void knn(userData* fri, userData me) {
     } else {
         cout << "J";
     }
+    cout << "\nThe 3 Nearest Neighbors is :" << endl << fri[min_index[0]].name << "Type :" << fri[min_index[0]].type << endl;
+    cout << fri[min_index[1]].name << "Type :" << fri[min_index[1]].type << endl;
+    cout << fri[min_index[2]].name << "Type :" << fri[min_index[2]].type;
 }
-
 int main() {
     int size = 50;
     userData Data_friend[size];
