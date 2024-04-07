@@ -30,89 +30,34 @@ void knn(userData* fri, userData me) {
             }
         }
     }
-    if (fri[min_index[0]].type[0] == 'I') {
-        I++;
-    } else {
-        E++;
+    cout << "Your MBTI type is :";
+    // type = 0
+    if ((fri[min_index[0]].type[0] == 'I' && fri[min_index[1]].type[0] == 'I') || (fri[min_index[0]].type[0] == 'E' && fri[min_index[1]].type[0] == 'E')){
+        cout << fri[min_index[0]].type[0];
     }
-    if (fri[min_index[0]].type[1] == 'N') {
-        N++;
-    } else {
-        S++;
+    else if (fri[min_index[0]].type[2] != fri[min_index[1]].type[2]){
+        cout << fri[min_index[2]].type[0];
     }
-    if (fri[min_index[0]].type[2] == 'T') {
-        T++;
-    } else {
-        F++;
+    //type = 1
+    if ((fri[min_index[0]].type[1] == 'N' && fri[min_index[1]].type[1] == 'N') || (fri[min_index[0]].type[1] == 'S' && fri[min_index[1]].type[1] == 'S')){
+        cout << fri[min_index[0]].type[1];
     }
-    if (fri[min_index[0]].type[3] == 'J') {
-        J++;
-    } else {
-        P++;
+    else if (fri[min_index[0]].type[1] != fri[min_index[1]].type[1]){
+        cout << fri[min_index[2]].type[1];
     }
-    /////////////////////////////////////////////////////////////////
-    if (fri[min_index[1]].type[0] == 'I') {
-        I++;
-    } else {
-        E++;
+    //type = 2
+    if ((fri[min_index[0]].type[2] == 'T' && fri[min_index[1]].type[2] == 'T') || (fri[min_index[0]].type[2] == 'F' && fri[min_index[1]].type[2] == 'F')){
+        cout << fri[min_index[0]].type[2];
     }
-    if (fri[min_index[1]].type[1] == 'N') {
-        N++;
-    } else {
-        S++;
+    else if (fri[min_index[0]].type[2] != fri[min_index[1]].type[2]){
+        cout << fri[min_index[2]].type[2];
     }
-    if (fri[min_index[1]].type[2] == 'T') {
-        T++;
-    } else {
-        F++;
+    //type = 3
+    if ((fri[min_index[0]].type[3] == 'J' && fri[min_index[1]].type[3] == 'J') || (fri[min_index[0]].type[3] == 'P' && fri[min_index[1]].type[3] == 'P')){
+        cout << fri[min_index[0]].type[3];
     }
-    if (fri[min_index[1]].type[3] == 'J') {
-        J++;
-    } else {
-        P++;
-    }
-    ////////////////////////////////////////////////////////////////
-    if (fri[min_index[2]].type[0] == 'I') {
-        I++;
-    } else {
-        E++;
-    }
-    if (fri[min_index[2]].type[1] == 'N') {
-        N++;
-    } else {
-        S++;
-    }
-    if (fri[min_index[2]].type[2] == 'T') {
-        T++;
-    } else {
-        F++;
-    }
-    if (fri[min_index[2]].type[3] == 'J') {
-        J++;
-    } else {
-        P++;
-    }
-    ///////////////////////////////////////////////////////////////
-    cout << "Your MBTI type : ";
-    if (I > E) {
-        cout << "I";
-    } else {
-        cout << "E";
-    }
-    if (N > S) {
-        cout << "N";
-    } else {
-        cout << "S";
-    }
-    if (T > F) {
-        cout << "T";
-    } else {
-        cout << "F";
-    }
-    if (P > J) {
-        cout << "P";
-    } else {
-        cout << "J";
+    else if (fri[min_index[0]].type[3] != fri[min_index[1]].type[3]){
+        cout << fri[min_index[2]].type[3];
     }
     cout << "\nThe 3 Nearest Neighbors is :" << endl << fri[min_index[0]].name << "Type :" << fri[min_index[0]].type << endl;
     cout << fri[min_index[1]].name << "Type :" << fri[min_index[1]].type << endl;
