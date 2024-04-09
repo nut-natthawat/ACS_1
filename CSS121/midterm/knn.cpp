@@ -33,7 +33,7 @@ void knn(area* data,int A,int B){
             }
         } 
     }
-    cout << "me tong or not?" << endl;
+    cout << "Have Gold or not?" << endl;
     if(data[minindex[0]].HasGold == 1){
         Y++;
     }else {
