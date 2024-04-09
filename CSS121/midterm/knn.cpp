@@ -4,9 +4,10 @@ using namespace std;
 
 struct area
 {
+    char areaID[50];
     int Latitude;
     int Longtitude;
-    string HasGold;
+    int HasGold;
 };
 
 void knn(area* data,int A,int B){
@@ -33,28 +34,29 @@ void knn(area* data,int A,int B){
         } 
     }
     cout << "me tong or not?" << endl;
-    if(data[minindex[0]].HasGold == "Yes"){
+    if(data[minindex[0]].HasGold == 1){
         Y++;
     }else {
         N++;
     }
-    if(data[minindex[1]].HasGold == "Yes"){
+    if(data[minindex[1]].HasGold == 1){
         Y++;
     }
     else{
         N++;
     }
-    if(data[minindex[2]].HasGold == "Yes"){
+    if(data[minindex[2]].HasGold == 1){
         Y++;
     }else {
         N++;
     }
     if(Y > N){
-        cout << "Yes jer Gold";
+        cout << "Yes jer Gold" << endl;
     }
     else{
-        cout << "No jer Gold";
+        cout << "No jer Gold" << endl;
     }
+    cout << "nearest 3 position :" << data[minindex[0]].areaID << "," << data[minindex[1]].areaID << "," << data[minindex[2]].areaID << endl;
 }
 int main(){
     area areaID[50];
@@ -63,21 +65,21 @@ int main(){
     cin >> A;
     cout << "Input longtitude :";
     cin >> B;
-    areaID[0] = {54,97,"Yes"};
-    areaID[1] = {99,91,"No"};
-    areaID[2] = {61,53,"Yes"};
-    areaID[3] = {43,95,"No"};
-    areaID[4] = {60,10,"Yes"};
-    areaID[5] = {40,74,"No"};
-    areaID[6] = {16,92,"Yes"};
-    areaID[7] = {8,8,"No"};
-    areaID[8] = {90,37,"Yes"};
-    areaID[9] = {13,32,"No"};
-    areaID[10] = {85,75,"Yes"};
-    areaID[11] = {98,23,"No"};
-    areaID[12] = {94,74,"Yes"};
-    areaID[13] = {54,38,"No"};
-    areaID[14] = {36,42,"Yes"};
+    areaID[0] = {"1",54,97,1};
+    areaID[1] = {"2",99,91,0};
+    areaID[2] = {"3",61,53,1};
+    areaID[3] = {"4",43,95,0};
+    areaID[4] = {"5",60,10,1};
+    areaID[5] = {"6",40,74,0};
+    areaID[6] = {"7",16,92,1};
+    areaID[7] = {"8",8,8,0};
+    areaID[8] = {"9",90,37,1};
+    areaID[9] = {"10",13,32,0};
+    areaID[10] = {"11",85,75,1};
+    areaID[11] = {"12",98,23,0};
+    areaID[12] = {"13",94,74,1};
+    areaID[13] = {"14",54,38,0};
+    areaID[14] = {"15",36,42,1};
     knn(areaID,A,B);
 
 }
