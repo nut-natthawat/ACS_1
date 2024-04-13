@@ -60,6 +60,6 @@ int main(){
     cin >> columm;
     insertionsort(data,n,columm);
     for(const Row& row : data){
-        std::cout << row.A << " " << row.B << " " << row.C << endl;
+        cout << row.A << " " << row.B << " " << row.C << endl;
     }
 }
