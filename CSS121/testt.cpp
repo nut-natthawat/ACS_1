@@ -9,37 +9,36 @@ struct Row {
 };
 
 void insertionsort(std::vector<Row>& arr, int n, char column) {
-    for (size_t i = 1; i < n; ++i) {
+    for (int i = 1; i < n; i++) {
         Row key = arr[i];
-        size_t j = i;
+        int j = i - 1;
         switch (column) {
             case 'A':
-                while (j > 0 && arr[j - 1].A > key.A) {
-                    arr[j] = arr[j - 1];
-                    --j;
+                for (; j >= 0 && arr[j].A > key.A; j--) {
+                    arr[j + 1] = arr[j];
                 }
+                arr[j + 1] = key;
                 break;
             case 'B':
-                while (j > 0 && arr[j - 1].B > key.B) {
-                    arr[j] = arr[j - 1];
-                    --j;
+                for (; j >= 0 && arr[j].B > key.B; j--) {
+                    arr[j + 1] = arr[j];
                 }
+                arr[j + 1] = key;
                 break;
             case 'C':
-                while (j > 0 && arr[j - 1].C > key.C) {
-                    arr[j] = arr[j - 1];
-                    --j;
+                for (; j >= 0 && arr[j].C > key.C; j--) {
+                    arr[j + 1] = arr[j];
                 }
+                arr[j + 1] = key;
                 break;
             default:
                 break;
         }
-        arr[j] = key;
     }
 }
 
 int main() {
-    int n = 14;
+    int n = 15;
     std::vector<Row> data = {
         {1, 1, 4},
         {3, 1, 1},
@@ -56,17 +55,11 @@ int main() {
         {5, 2, 3},
         {3, 5, 2}
     };
-
     char column;
-
-    cout << "Enter the column to sort (A, B, C): ";
+    cout << "Input column to sort (A, B, C): ";
     cin >> column;
-
     insertionsort(data, n, column);
-
     for (const Row& row : data) {
-        std::cout << row.A << " " << row.B << " " << row.C << endl;
+        cout << row.A << " " << row.B << " " << row.C << endl;
     }
-
-    return 0;
 }
