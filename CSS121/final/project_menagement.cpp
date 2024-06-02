@@ -8,13 +8,13 @@ struct Edge
 };
 void bellman(int node,int edge,Edge edges[],int start){
     int distance[100];
-    for(int i=0;i<node;i++){
+    for(int i=0;i<node;i++){ //ทำให้ distance ทุกค่าเป็น inf     O(n)
         distance[i] = INF;
     }
-    distance[start] = 0;
+    distance[start] = 0; //เริ่มที่จุด 1
     for(int i=0;i<node-1;i++){
-        for(int j=0;j<edge;j++){
-            int u = edges[j].node;
+        for(int j=0;j<edge;j++){            //O(n^2)
+            int u = edges[j].node; 
             int v = edges[j].destination;
             int weight = edges[j].weight;
             if(distance[u] + weight <= distance[v]){
@@ -22,9 +22,10 @@ void bellman(int node,int edge,Edge edges[],int start){
             }
         }
     }
+    //print
     cout << "Vertex Distance from vertex 1 :" << endl;
     for(int i=0;i<node;i++){
-        cout << "1 ---> " << i + 1 << " distance is : " << distance[i] <<endl;
+        cout << "1 -> " << i + 1 << " distance is : " << distance[i] <<endl;        //O(n)
     }
 }
 
