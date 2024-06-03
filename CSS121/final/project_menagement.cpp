@@ -23,7 +23,7 @@ void bellman(int node,int edge,Edge edges[],int start){
         }
     }
     //print
-    cout << "Vertex Distance from vertex 1 :" << endl;
+    cout << "Vertex Distance from start :" << endl;
     for(int i=0;i<node;i++){
         cout << "1 -> " << i + 1 << " distance is : " << distance[i] <<endl;        //O(n)
     }
@@ -31,27 +31,28 @@ void bellman(int node,int edge,Edge edges[],int start){
 
 int main(){
     int node = 9;
-    int edge = 14;
+    int edge = 10;
     int start = 0;
     Edge edges_short[] = {
-        {0,1,3},{0,2,4},{0,3,6},
-        {1,4,9},{1,5,1},
-        {2,5,4},{2,3,3},
-        {3,5,5},{3,6,4},
-        {4,7,3},
-        {5,7,6},{5,8,3},
-        {6,8,6},
-        {7,8,9}
+        {0,1,3},{0,2,4},        //start = 0 A=1 B=2 C=3 D=4 E=5 F=6 G=7 finish=8
+        {1,3,2},{1,4,1},
+        {2,5,2},
+        {3,6,1},
+        {4,8,0},
+        {5,7,1},
+        {6,8,0},
+        {7,8,0}
+        
     };
     Edge edges_long[] = {
-        {0,1,-3},{0,2,-4},{0,3,-6},
-        {1,4,-9},{1,5,-1},
-        {2,5,-4},{2,3,-3},
-        {3,5,-5},{3,6,-4},
-        {4,7,-3},
-        {5,7,-6},{5,8,-3},
-        {6,8,-6},
-        {7,8,-9}
+        {0,1,-3},{0,2,-4},
+        {1,3,-2},{1,4,-1},
+        {2,5,-2},
+        {3,6,-1},
+        {4,8,0},
+        {5,7,-1},
+        {6,8,0},
+        {7,8,0}
     };
     cout << "shortest path " << endl;
     bellman(node,edge,edges_short,start);
