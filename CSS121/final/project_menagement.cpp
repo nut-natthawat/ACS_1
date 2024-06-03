@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 const int INF = 9999999;
 struct Edge
