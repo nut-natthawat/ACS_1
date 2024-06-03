@@ -13,7 +13,7 @@ void bellman(int node,int edge,Edge edges[],int start){
     }
     distance[start] = 0; //เริ่มที่จุด 1
     for(int i=0;i<node-1;i++){
-        for(int j=0;j<edge;j++){            //O(n^2)
+        for(int j=0;j<edge;j++){            //O(node*edge)
             int u = edges[j].node; 
             int v = edges[j].destination;
             int weight = edges[j].weight;
