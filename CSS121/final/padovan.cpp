@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int padovan_naive2(int n){
+int padovan_naive2(int n){ //ใช้ bottom up
     if(n < 3)
         return 1;
     if(n >= 3 && n < 5)
@@ -19,6 +19,8 @@ int padovan_naive2(int n){
 }
 
 int main(){
-    int n = 8;
+    cout << "input n ";
+    int n;
+    cin >> n;
     cout << padovan_naive2(n);
 }
