@@ -1,26 +1,22 @@
 #include <iostream>
 #include <vector>
+#include <tuple>
 #include <algorithm>
+#include <set>
 
 using namespace std;
 
-// ฟังก์ชั่นสำหรับการคำนวณกำไรสูงสุดด้วย Dynamic Programming
-int maxProfitWithKTransactions(const vector<int>& prices, int k) {
+// ฟังก์ชั่นสำหรับการคำนวณกำไรจากการซื้อและขายในแต่ละคู่
+vector<tuple<int, int, int>> calculate_profit(const vector<int>& prices) {
+    vector<tuple<int, int, int>> profits;
     int n = prices.size();
-    if (n == 0) return 0;
-
-    // สร้างตาราง dp
-    vector<vector<int>> dp(k + 1, vector<int>(n, 0));
-
-    for (int t = 1; t <= k; ++t) {
-        int maxDiff = -prices[0];
-        for (int d = 1; d < n; ++d) {
-            dp[t][d] = max(dp[t][d - 1], prices[d] + maxDiff);
-            maxDiff = max(maxDiff, dp[t - 1][d] - prices[d]);
+    for (int buy_day = 0; buy_day < n - 1; ++buy_day) {
+        for (int sell_day = buy_day + 1; sell_day < n; ++sell_day) {
+            int profit = prices[sell_day] - prices[buy_day];
+            profits.emplace_back(profit, buy_day + 1, sell_day + 1);
         }
     }
-
-    return dp[k][n - 1];
+    return profits;
 }
 
 int main() {
@@ -30,10 +26,33 @@ int main() {
         25, 98, 97, 11, 18, 2, 9, 19, 56, 12
     };
 
-    int k = 3; // จำนวนครั้งของการซื้อขายที่อนุญาต
-    int maxProfit = maxProfitWithKTransactions(prices, k);
+    // คำนวณกำไรทั้งหมดที่เป็นไปได้
+    auto profits = calculate_profit(prices);
+    // เรียงลำดับตามกำไรจากมากไปน้อย
+    sort(profits.rbegin(), profits.rend());
 
-    cout << "Maximum profit with " << k << " transactions: " << maxProfit << endl;
+    // เลือกการซื้อขาย 3 ครั้งที่ดีที่สุด
+    vector<tuple<int, int, int>> best_trades;
+    set<int> used_days;
+    for (const auto& trade : profits) {
+        int profit, buy_day, sell_day;
+        tie(profit, buy_day, sell_day) = trade;
+        if (used_days.count(buy_day) == 0 && used_days.count(sell_day) == 0) {
+            best_trades.push_back(trade);
+            used_days.insert(buy_day);
+            used_days.insert(sell_day);
+        }
+        if (best_trades.size() == 3) {
+            break;
+        }
+    }
+
+    // แสดงผลลัพธ์
+    for (const auto& trade : best_trades) {
+        int profit, buy_day, sell_day;
+        tie(profit, buy_day, sell_day) = trade;
+        cout << "Buy on day " << buy_day << ", sell on day " << sell_day << ", profit: " << profit << endl;
+    }
 
     return 0;
 }
