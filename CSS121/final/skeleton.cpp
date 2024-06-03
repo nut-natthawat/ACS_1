@@ -57,5 +57,4 @@ int main(){
     longestcommon(X_3,X_4,m,n);
     longestcommon(X_3,X_5,m,n);
     longestcommon(X_4,X_5,m,n);
-
 }
