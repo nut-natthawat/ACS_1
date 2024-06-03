@@ -1,48 +1,61 @@
 #include <iostream>
+#include <string>
 using namespace std;
+void longestcommon(string X,string Y,int m,int n){
+    int L[m + 1][n + 1];
 
-const int INF = 999999;
-const int V = 5;
+    // สร้างตาราง L[m+1][n+1] แบบ Bottom-up
+    for (int i = 0; i <= m; i++) {
+        for (int j = 0; j <= n; j++) {
+            if (i == 0 || j == 0)
+                L[i][j] = 0;
+            else if (X[i - 1] == Y[j - 1])
+                L[i][j] = L[i - 1][j - 1] + 1;
+            else
+                L[i][j] = max(L[i - 1][j], L[i][j - 1]);
+        }
+    }
+    int index = L[m][n];
+    char lcs[index+1];
+    lcs[index] = '\0';
 
-void floyd(int graph[V][V]){
-    int distance[V][V];
-    for(int i=0;i<V;i++){
-        for(int j=0;j<V;j++){           //ใส่ค่า distance         O(n^2)
-            distance[i][j] = graph[i][j];
+    int i = m ,j = n;
+    while(i > 0 && j > 0){
+        if(X[i-1] == Y[j-1]){
+            lcs[index-1] = X[i-1];
+            i--;
+            j--;
+            index--;
+        }
+        else if(L[i-1][j] > L[i][j-1]){
+            i--;
+        }
+        else{
+            j--;
         }
     }
-    for(int k=0;k<V;k++){
-        for(int i=0;i<V;i++){
-            for(int j=0;j<V;j++){
-                if(distance[i][k]!=INF&&distance[k][j]!=INF&&distance[i][j] > distance[i][k]+distance[k][j]){       //O(n^3)
-                    distance[i][j] = distance[i][k] + distance[k][j];
-                }
-            }
-        }
-    }
-    //print matrix
-    cout << "distance between ever pair" << endl << "   1 2 3 4 5" << endl;
-    for(int i=0;i<V;i++){
-        cout << i+1 << "| ";
-        for(int j=0;j<V;j++){                   //O(n^2)
-            if(distance[i][j] == INF){
-                cout << "INF";
-            }
-            else{
-                cout << distance[i][j] << " ";
-            }
-        }
-        cout << endl;
-    }
+    //print
+    cout << "LCS of " << X << " and " << Y << " is " << lcs << " Lenght is " << L[m][n] << endl;
 }
 
 int main(){
-    int graph[V][V] = {
-        {0, 3, 4, INF,INF},  
-        {3, 0, 3, 1,6}, 
-        {4, 3, 0, 6,5},
-        {INF, 1, 7, 0,3},
-        {INF, 6, 5, 3, 0}
-    };
-    floyd(graph);
+    int m = 15;
+    int n = 15;
+    string X_1 = "TGCTACTCCACACAC";
+    string X_2 = "TAGTACTCCACACAC";
+    string X_3 = "TGCTACTGCAGACAC";
+    string X_4 = "TACTACTGCACCCAC";
+    string X_5 = "TAGCACTCCAGACCC";
+    
+    longestcommon(X_1,X_2,m,n);
+    longestcommon(X_1,X_3,m,n);
+    longestcommon(X_1,X_4,m,n);
+    longestcommon(X_1,X_5,m,n);
+    longestcommon(X_2,X_3,m,n);
+    longestcommon(X_2,X_4,m,n);
+    longestcommon(X_2,X_5,m,n);
+    longestcommon(X_3,X_4,m,n);
+    longestcommon(X_3,X_5,m,n);
+    longestcommon(X_4,X_5,m,n);
+
 }
