@@ -23,7 +23,9 @@ void sieveofEra(int n){
     }
 }
 int main(){
-    int n = 30;
+    int n;
+    cout << "input n ";
+    cin >> n;
     sieveofEra(n);
 
 }
