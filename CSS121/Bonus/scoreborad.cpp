@@ -85,8 +85,10 @@ int main(){
     string name;
     int score;
     for(int i=1;i<=4;i++){
-        cout << "Enter name" << endl;
-        cin >> name >> score;
+        cout << "Enter name : " << endl;
+        cin >> name;
+        cout << "Enter socre : " << endl;
+        cin >> score;
         borad.insertscore(name,score);
     }
     cout << "Scoreborad" << endl;
